@@ -72,6 +72,8 @@
 
 			// End of variables
 
+			// Click function to hide or show the ul dropdown
+
 			input.addEventListener('click', function(event){
 
 				if(ul.hidden === false) {
@@ -80,6 +82,12 @@
 					ul.hidden = false;
 				}
 			}, false);
+
+			// End of click function
+
+			// Runs through each of the li elements to remove the active class
+			// from them all, and then add it to the clicked li item
+			// then switches that li item to the top of the menu.
 
 
 			li.forEach(function(element){
@@ -102,8 +110,7 @@
 
 			});
 
-			
-
+			// End of the loop
 
 		});
 
