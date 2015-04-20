@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Learning - Accordion</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="column column-12">
+				<ul id="tabs">
+					<li><a id="tab1">test1</a></li>
+					<li><a id="tab2">test2</a></li>
+					<li><a id="tab3">test3</a></li>
+					<li><a id="tab4">test4</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="column column-12 tab-section" id="tab1C">Content 1</div>
+		</div>
+		<div class="row">
+			<div class="column column-12 tab-section" id="tab2C">Content 2</div>
+		</div>
+		<div class="row">
+			<div class="column column-12 tab-section" id="tab3C">Content 3</div>
+		</div>
+		<div class="row">
+			<div class="column column-12 tab-section" id="tab4C">Content 4</div>
+		</div>
+
+		<div class="row">
+			<div class="column column-12">
+				<a href="#" id="click-me" >switch</a>
+				<div id="show-me" class="">show me first</div>
+				<div id="dont-show" class="is-invisible">dont show me first</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+	<script>
+		$(document).ready(function() {    
+
+			$('#tabs li a:not(:first)').addClass('inactive');
+			$('.tab-section').hide();
+			$('.tab-section:first').show();
+			    
+			$('#tabs li a').click(function(){
+				var t = $(this).attr('id');
+				if($(this).hasClass('inactive')){ 
+					$('#tabs li a').addClass('inactive');           
+					$(this).removeClass('inactive');
+
+					$('.tab-section').hide();
+					$('#'+ t + 'C').fadeIn('slow');
+				}
+			});
+
+		});
+
+	</script>
+
+	<script>
+	$('#click-me').click(function() {
+		$('#show-me').fadeOut(500, function() { 
+			$('#show-me').addClass('is-invisible'); 
+			$('#dont-show').fadeIn(1000).removeClass('is-invisible'); 
+		}); 
+	});
+	</script>
+
+</body>
+</html>

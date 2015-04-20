@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UP v3 Work</title>
+
+	<link rel="stylesheet" href="css/upv3.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="column">
+				
+				<div class="up-dropdown" id="up-dropdown">
+				    <div class="input-control">Highest raise</div>
+					<ul hidden>
+						<li>Highest raise</li>
+						<li>Newest</li>
+						<li>Ending soonest</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Remove class and Add class in native JS -->
+
+	<script>
+		function removeClass( element, class_name ) {
+
+		    /* Regex to test if the class already exists in an element's className: */
+
+		    var regexp = new RegExp( '(^| )' + class_name + '( |$)' );
+
+		    element.className = element.className.replace( regexp, '$1' );
+		    element.className = element.className.trim();
+
+		};
+
+		function addClass( element, class_name ) {
+
+		    /* Regex to test if the class already exists in an element's className: */
+
+		    var regexp = new RegExp( '(^| )' + class_name + '( |$)' );
+
+		    if ( ! regexp.test( element.className ) ) {
+		        element.className += ' ' + class_name;
+		        element.className = element.className.trim();
+		    }
+		    element.className.trim();
+
+		};
+	</script>
+
+	<!-- End of Remove and Add class in native JS -->
+
+	<!-- Drop Down Javascript Start -->
+	<script>
+	; (function() {
+
+		"use strict";
+		document.addEventListener("DOMContentLoaded", function(event) {
+
+			// Variables for drop down
+			var dropDown = document.getElementById('up-dropdown');
+			var input = dropDown.querySelector('.input-control');
+			var ul = dropDown.querySelector('ul');
+			var li = dropDown.querySelectorAll('li');
+			li = Array.prototype.slice.call(li);
+			var value = input.innerHTML;
+
+			// End of variables
+
+			input.addEventListener('click', function(event){
+
+				if(ul.hidden === false) {
+					ul.hidden = true;
+				} else {
+					ul.hidden = false;
+				}
+			}, false);
+
+
+			li.forEach(function(element){
+				
+				element.addEventListener('click', function(event){
+					li.forEach(function(element){
+						removeClass(element, 'active');
+					});
+					input.innerHTML = element.innerHTML;
+					addClass(element, 'active');
+					// element.className = 'active';
+					ul.hidden = true;
+
+				}, false);
+
+				var test = element.innerHTML;
+				if(test === value) {
+					addClass(element, 'active');
+				}
+
+			});
+
+			
+
+
+		});
+
+	}());
+	</script>
+	
+	<!-- Drop Down Javascript End -->
+
+</body>
+</html>
